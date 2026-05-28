@@ -160,13 +160,14 @@ function initTestimonialsMarquee() {
 
   // ── Drag touch (mobile / Safari iOS) ───────────────────
   marquee.addEventListener('touchstart', e => {
+    e.preventDefault();
     dragging = true;
     dragStartX = e.touches[0].clientX;
     dragStartOffset = offset;
     dragVelocity = 0;
     lastDragX = dragStartX;
     lastDragTime = performance.now();
-  }, { passive: true });
+  }, { passive: false });
 
   marquee.addEventListener('touchmove', e => {
     if (!dragging) return;
