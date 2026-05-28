@@ -85,6 +85,135 @@ function initScrollAnimations() {
   els.forEach(el => observer.observe(el));
 }
 
+/* ── Carrossel de depoimentos ─────────────────────────────── */
+function initTestimonialsMarquee() {
+  const marquee = document.querySelector('.testimonials__marquee');
+  if (!marquee) return;
+
+  // Respeita preferência de movimento reduzido
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const strips = marquee.querySelectorAll('.testimonials__strip');
+  if (!strips.length) return;
+
+  // Largura total de uma faixa (metade do conteúdo duplicado)
+  const stripW = () => strips[0].offsetWidth;
+
+  let offset = 0;       // posição atual em px (negativa = movendo para esquerda)
+  const speed = 0.6;    // px por frame (~36px/s a 60fps)
+  let paused = false;
+  let rafId = null;
+
+  // Drag state
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let dragVelocity = 0;
+  let lastDragX = 0;
+  let lastDragTime = 0;
+
+  function applyTransform() {
+    // Normaliza offset: quando passa de uma largura de faixa, reseta sem salto
+    const w = stripW();
+    offset = ((offset % w) - w) % w; // mantém sempre em [-w, 0)
+    strips.forEach(s => {
+      s.style.transform = `translateX(${offset}px)`;
+    });
+  }
+
+  function tick() {
+    if (!paused && !dragging) {
+      offset -= speed;
+      applyTransform();
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // ── Mouse drag ──────────────────────────────────────────
+  marquee.addEventListener('mousedown', e => {
+    dragging = true;
+    dragStartX = e.clientX;
+    dragStartOffset = offset;
+    dragVelocity = 0;
+    lastDragX = e.clientX;
+    lastDragTime = performance.now();
+    marquee.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const now = performance.now();
+    const dt = now - lastDragTime;
+    if (dt > 0) dragVelocity = (e.clientX - lastDragX) / dt * 16; // px/frame
+    lastDragX = e.clientX;
+    lastDragTime = now;
+    offset = dragStartOffset + (e.clientX - dragStartX);
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    marquee.classList.remove('is-dragging');
+    // Aplica momentum: continua na direção do arrasto por um tempo
+    const momentum = dragVelocity;
+    if (Math.abs(momentum) > 0.5) {
+      let frames = 0;
+      const decay = () => {
+        const v = momentum * Math.pow(0.92, frames++);
+        offset += v;
+        applyTransform();
+        if (Math.abs(v) > 0.1) requestAnimationFrame(decay);
+      };
+      requestAnimationFrame(decay);
+    }
+  });
+
+  // ── Touch drag ──────────────────────────────────────────
+  marquee.addEventListener('touchstart', e => {
+    dragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartOffset = offset;
+    dragVelocity = 0;
+    lastDragX = dragStartX;
+    lastDragTime = performance.now();
+  }, { passive: true });
+
+  marquee.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const now = performance.now();
+    const dt = now - lastDragTime;
+    const x = e.touches[0].clientX;
+    if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
+    lastDragX = x;
+    lastDragTime = now;
+    offset = dragStartOffset + (x - dragStartX);
+    applyTransform();
+  }, { passive: true });
+
+  marquee.addEventListener('touchend', () => {
+    dragging = false;
+    const momentum = dragVelocity;
+    if (Math.abs(momentum) > 0.5) {
+      let frames = 0;
+      const decay = () => {
+        const v = momentum * Math.pow(0.92, frames++);
+        offset += v;
+        applyTransform();
+        if (Math.abs(v) > 0.1) requestAnimationFrame(decay);
+      };
+      requestAnimationFrame(decay);
+    }
+  });
+
+  // ── Pausa ao hover (sem drag) ────────────────────────────
+  marquee.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
+  marquee.addEventListener('mouseleave', () => { paused = false; });
+
+  // Inicia o loop
+  rafId = requestAnimationFrame(tick);
+}
+
 /* ── Inicialização ────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   // i18n
@@ -116,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
   initActiveNav();
   initScrollAnimations();
+  initTestimonialsMarquee();
 
   // Portfólio (só executa se estiver na página de portfólio)
   if (typeof initPortfolio === 'function') initPortfolio();

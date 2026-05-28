@@ -145,40 +145,32 @@
 }
 
 /* ── Depoimentos — carrossel marquee infinito ─────────────── */
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 .testimonials__marquee {
-  display: flex;          /* strips ficam lado a lado em linha */
+  display: flex;
   overflow: hidden;
-  /* máscaras de fade nas bordas */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   mask-image:         linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  cursor: default;
+  cursor: grab;
+  user-select: none;
 }
 
-.testimonials__marquee:hover .testimonials__strip {
-  animation-play-state: paused;
+.testimonials__marquee.is-dragging {
+  cursor: grabbing;
 }
 
 .testimonials__strip {
   display: flex;
   gap: var(--space-5);
-  padding-right: var(--space-5); /* inclui o gap de separação entre as duas faixas no width total */
+  padding-right: var(--space-5);
   width: max-content;
-  animation: marquee-scroll 32s linear infinite;
   will-change: transform;
 }
 
 /* respeita preferência de movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
-  .testimonials__strip {
-    animation: none;
-  }
   .testimonials__marquee {
     overflow-x: auto;
+    cursor: default;
     -webkit-mask-image: none;
     mask-image: none;
   }
