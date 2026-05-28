@@ -3,7 +3,7 @@
 **Iniciativa:** Desenvolvimento completo do site de portfólio e apresentação comercial da Magnus Mídias
 **Versão:** 1.0
 **Data:** 2026-05-26
-**Status:** Em andamento — Fase 1 não iniciada
+**Status:** ✅ CONCLUÍDO — 2026-05-28 — https://portfolio.magnusmidias.com
 
 > **Regra do plano:** uma fase só começa quando a anterior está 100% concluída (todos os itens marcados). Ao concluir uma fase, marcar como `✅ CONCLUÍDA` no cabeçalho dela e criar o registro correspondente em `docs/historico/`.
 
@@ -20,7 +20,7 @@
 | T | Testes intermediários | Testes | ✅ Concluída — 2026-05-26 |
 | 5 | Conteúdo real | Conteúdo | ✅ Concluída — 2026-05-27 (parcial: depoimentos e cases aguardam assets de Cristian) |
 | 6 | Testes finais de segurança e performance | Testes | ✅ Concluída — 2026-05-28 |
-| 7 | Deploy e go-live | Infra | ⬜ Não iniciada |
+| 7 | Deploy e go-live | Infra | ✅ Concluída — 2026-05-28 |
 
 ---
 
