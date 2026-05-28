@@ -1,0 +1,10 @@
+{
+  "name": "site-portfolio",
+  "version": "1.0.0",
+  "description": "Site de portfólio e apresentação comercial — Magnus Mídias",
+  "scripts": {
+    "dev": "npx serve . --listen 3000 --no-clipboard",
+    "start": "npx serve . --listen 3000 --no-clipboard"
+  },
+  "private": true
+}

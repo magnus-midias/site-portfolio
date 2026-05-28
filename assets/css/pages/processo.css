@@ -1,0 +1,236 @@
+/* =============================================================
+   PROCESSO.CSS — Magnus Mídias / site-portfolio
+   ============================================================= */
+
+/* ── Ajustes para section-dark ────────────────────────────── */
+.section-dark .timeline::before {
+  background-color: rgba(244, 244, 249, 0.2);
+  z-index: 0;
+}
+
+.section-dark .timeline__number {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: 2px solid rgba(244, 244, 249, 0.4);
+  z-index: 2;
+}
+
+.section-dark .timeline__name {
+  color: var(--color-text-inverse);
+}
+
+.section-dark .timeline__desc {
+  color: rgba(244, 244, 249, 0.65);
+}
+
+.section-dark .vertical-header__desc {
+  color: rgba(244, 244, 249, 0.7);
+}
+
+.section-dark .diferencial-card {
+  background-color: rgba(244, 244, 249, 0.1);
+  border-color: rgba(244, 244, 249, 0.18);
+}
+
+.section-dark .diferencial-card:hover {
+  background-color: rgba(244, 244, 249, 0.16);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.3);
+}
+
+.section-dark .diferencial-card__icon {
+  color: var(--color-text-inverse);
+}
+
+.section-dark .diferencial-card__title {
+  color: var(--color-text-inverse);
+}
+
+.section-dark .diferencial-card__desc {
+  color: rgba(244, 244, 249, 0.65);
+}
+
+/* ── Introdução ───────────────────────────────────────────── */
+.processo-intro__text {
+  max-width: 64ch;
+  margin-top: var(--space-5);
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Cabeçalho de vertical ────────────────────────────────── */
+.vertical-header {
+  margin-bottom: var(--space-8);
+}
+
+.vertical-header__title {
+  margin-bottom: var(--space-3);
+}
+
+.vertical-header__desc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 58ch;
+}
+
+/* ── Timeline ─────────────────────────────────────────────── */
+
+/* Mobile: vertical */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: 40px;
+  width: 2px;
+  background-color: var(--color-border-strong);
+  z-index: 0;
+}
+
+.timeline__step {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding-bottom: var(--space-8);
+  position: relative;
+}
+
+.timeline__step:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline__content {
+  padding-top: var(--space-2);
+}
+
+.timeline__name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--space-1);
+}
+
+.timeline__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+/* Desktop: horizontal */
+@media (min-width: 1024px) {
+  .timeline {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: var(--space-3);
+  }
+
+  .timeline::before {
+    left: 0;
+    right: 0;
+    top: 19px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+
+  .timeline__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0;
+    padding-inline: var(--space-3);
+    min-width: 150px;
+    flex: 1;
+  }
+
+  .timeline__number {
+    margin-bottom: var(--space-3);
+  }
+
+  .timeline__content {
+    padding-top: 0;
+  }
+}
+
+/* ── Diferenciais ─────────────────────────────────────────── */
+.diferenciais__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .diferenciais__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .diferenciais__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.diferencial-card {
+  padding: 2.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(0, 0, 42, 0.08);
+  border-radius: var(--radius-lg);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.diferencial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 42, 0.15);
+}
+
+.diferencial-card__icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.diferencial-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.diferencial-card__title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.diferencial-card__desc {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  line-height: 1.55;
+}

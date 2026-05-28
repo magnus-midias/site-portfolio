@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Magnus Mídias — Consultoria de Marketing, Tráfego Pago e Desenvolvimento Web para negócios locais e internacionais." />
+
+  <title>Magnus Mídias — Presença digital que gera resultado</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Magnus Mídias" />
+  <meta property="og:title"       content="Magnus Mídias - Presença digital que gera resultado" />
+  <meta property="og:description" content="Gerimos tráfego pago, criamos conteúdo e desenvolvemos sites e sistemas para empresas que querem crescer com previsibilidade." />
+  <meta property="og:url"         content="https://cristian.magnusmidias.com/" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta property="og:image"       content="https://cristian.magnusmidias.com/assets/images/logo/favicon.svg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Magnus Mídias — Presença digital que gera resultado" />
+  <meta name="twitter:description" content="Gerimos tráfego pago, criamos conteúdo e desenvolvemos sites e sistemas para empresas que querem crescer com previsibilidade." />
+  <meta name="twitter:image"       content="https://cristian.magnusmidias.com/assets/images/logo/favicon.svg" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/images/logo/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" /></noscript>
+
+  <link rel="stylesheet" href="/assets/css/global.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/pages/home.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+
+  <!-- ══════════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════ -->
+  <header class="header" role="banner">
+    <div class="container header__inner">
+
+      <a href="/" class="header__logo" aria-label="Magnus Mídias — página inicial">
+        <img src="/assets/images/logo/logo-dark.svg" alt="Magnus Mídias" width="140" height="32" />
+      </a>
+
+      <nav class="header__nav" aria-label="Navegação principal">
+        <a href="/"            class="header__nav-link" data-nav-path="/"          data-i18n="nav.home">Home</a>
+        <a href="/processo.html" class="header__nav-link" data-nav-path="/processo" data-i18n="nav.processo">Como Funciona</a>
+        <a href="/portfolio.html" class="header__nav-link" data-nav-path="/portfolio" data-i18n="nav.portfolio">Portfólio</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+          <button class="lang-toggle__btn is-active" data-lang="pt" aria-pressed="true">PT</button>
+          <button class="lang-toggle__btn"           data-lang="en" aria-pressed="false">EN</button>
+        </div>
+
+        <button
+          class="header__hamburger"
+          id="hamburger-btn"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="header__hamburger-bar"></span>
+          <span class="header__hamburger-bar"></span>
+          <span class="header__hamburger-bar"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Menu mobile -->
+    <div class="header__mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navegação">
+      <nav class="header__mobile-nav">
+        <a href="/"              class="header__mobile-nav-link" data-nav-path="/"          data-i18n="nav.home">Home</a>
+        <a href="/processo.html" class="header__mobile-nav-link" data-nav-path="/processo"  data-i18n="nav.processo">Como Funciona</a>
+        <a href="/portfolio.html" class="header__mobile-nav-link" data-nav-path="/portfolio" data-i18n="nav.portfolio">Portfólio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── Hero ──────────────────────────────────── -->
+    <section class="hero section" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="hero__content">
+          <p class="eyebrow hero__eyebrow" data-i18n="home.hero.eyebrow">Consultoria · Marketing · Tecnologia</p>
+          <h1 class="hero__headline" id="hero-headline" data-i18n="home.hero.headline">
+            Presença digital que gera resultado para negócios locais
+          </h1>
+          <p class="hero__subheadline" data-i18n="home.hero.subheadline">
+            Gerimos tráfego pago, criamos conteúdo e desenvolvemos sites e sistemas para empresas que querem crescer com previsibilidade.
+          </p>
+          <div class="hero__actions">
+            <a href="#" class="btn btn-whatsapp" data-whatsapp data-i18n="home.hero.cta.primary" rel="noopener noreferrer" target="_blank">Falar no WhatsApp</a>
+            <a href="mailto:contato@magnusmidias.com" class="btn btn-ghost" data-i18n="case.cta.email">Enviar e-mail</a>
+            <a href="/portfolio.html" class="btn btn-ghost" data-i18n="home.hero.cta.secondary">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Serviços ───────────────────────────────── -->
+    <section class="section section-dark" aria-labelledby="services-headline">
+      <div class="container">
+        <div class="section__header animate-on-scroll">
+          <p class="eyebrow" data-i18n="home.services.eyebrow">O que entregamos</p>
+          <h2 id="services-headline" data-i18n="home.services.headline">Duas verticais. Uma equipe dedicada.</h2>
+        </div>
+
+        <div class="services__grid">
+
+          <!-- Vertical Marketing -->
+          <div class="animate-on-scroll" style="transition-delay:0.1s">
+            <h3 class="services__vertical-title" data-i18n="home.services.marketing.title">Marketing e Tráfego Pago</h3>
+            <ul class="services__list" role="list">
+
+              <!-- M1 Tráfego Pago — alvo: objetivo, targeting -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.trafego.name">Tráfego Pago</p>
+                <p class="service-item__desc" data-i18n="home.services.trafego.desc">Campanhas no Google Ads e Meta Ads otimizadas para gerar leads qualificados.</p>
+              </li>
+
+              <!-- M2 Redes Sociais — grupo de pessoas: comunidade -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.social.name">Gestão de Redes Sociais</p>
+                <p class="service-item__desc" data-i18n="home.services.social.desc">Produção de conteúdo, calendário editorial e presença ativa nas redes.</p>
+              </li>
+
+              <!-- M3 Conteúdo — câmera de vídeo: produção audiovisual -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.conteudo.name">Captação e Produção de Conteúdo</p>
+                <p class="service-item__desc" data-i18n="home.services.conteudo.desc">Vídeo, foto e copy para redes sociais e campanhas digitais.</p>
+              </li>
+
+              <!-- M4 Automação e E-mail — envelope com raio: disparo automatizado -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.automacao.name">Automação e E-mail Marketing</p>
+                <p class="service-item__desc" data-i18n="home.services.automacao.desc">Fluxos automatizados de nutrição, recuperação e retenção via e-mail e WhatsApp.</p>
+              </li>
+
+              <!-- M5 Estratégia — bússola: direcionamento, norte estratégico -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.estrategia.name">Estratégia e Posicionamento</p>
+                <p class="service-item__desc" data-i18n="home.services.estrategia.desc">Análise de mercado (TAM/SAM/SOM), definição de ICP, canais prioritários e proposta de valor.</p>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- Vertical Tech -->
+          <div class="animate-on-scroll" style="transition-delay:0.2s">
+            <h3 class="services__vertical-title" data-i18n="home.services.tech.title">Tech e Desenvolvimento</h3>
+            <ul class="services__list" role="list">
+
+              <!-- T1 Link na Bio — elo de corrente: links conectados -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.linknabio.name">Link na Bio</p>
+                <p class="service-item__desc" data-i18n="home.services.linknabio.desc">Página centralizada para todos os seus links e CTAs nas redes sociais.</p>
+              </li>
+
+              <!-- T2 Landing Pages — layout com header: estrutura de página de conversão -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.landingpage.name">Landing Pages</p>
+                <p class="service-item__desc" data-i18n="home.services.landingpage.desc">Páginas focadas em conversão para produtos, serviços ou eventos.</p>
+              </li>
+
+              <!-- T3 Sites Institucionais — globo: presença global na web -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.site.name">Sites Institucionais</p>
+                <p class="service-item__desc" data-i18n="home.services.site.desc">Sites profissionais que geram credibilidade e convertem visitantes.</p>
+              </li>
+
+              <!-- T4 SaaS MVP — raio: lançamento rápido, velocidade -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.saasmvp.name">SaaS MVP</p>
+                <p class="service-item__desc" data-i18n="home.services.saasmvp.desc">Produto mínimo viável para validar sua ideia de software rapidamente.</p>
+              </li>
+
+              <!-- T5 SaaS V1 — colchetes de código: produto de software completo -->
+              <li class="service-item">
+                <div class="service-item__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <p class="service-item__name" data-i18n="home.services.saasv1.name">SaaS V1</p>
+                <p class="service-item__desc" data-i18n="home.services.saasv1.desc">Produto completo com autenticação, planos e infraestrutura escalável.</p>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Depoimentos ────────────────────────────── -->
+    <section class="section" aria-labelledby="testimonials-headline">
+      <div class="container">
+        <div class="section__header animate-on-scroll">
+          <p class="eyebrow" data-i18n="home.testimonials.eyebrow">Depoimentos</p>
+          <h2 id="testimonials-headline" data-i18n="home.testimonials.headline">O que nossos clientes dizem</h2>
+        </div>
+
+        <div class="testimonials__marquee" aria-label="Depoimentos de clientes">
+          <!-- faixa original -->
+          <div class="testimonials__strip" aria-hidden="false">
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="Foto de Cliente Placeholder" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="Foto de Cliente Placeholder" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="Foto de Cliente Placeholder" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+          </div>
+
+          <!-- duplicata para loop contínuo sem gap -->
+          <div class="testimonials__strip" aria-hidden="true">
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__header">
+                <img src="/assets/images/depoimentos/placeholder.svg" alt="" class="testimonial-card__photo" width="48" height="48" loading="lazy" />
+                <div>
+                  <p class="testimonial-card__name">_(nome a preencher)_</p>
+                  <p class="testimonial-card__role">_(cargo e empresa a preencher)_</p>
+                </div>
+              </div>
+              <p class="testimonial-card__text">_(texto do depoimento a preencher)_</p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA Final ──────────────────────────────── -->
+    <section class="section cta-section" aria-labelledby="cta-headline">
+      <div class="container">
+        <h2 id="cta-headline" data-i18n="home.cta.headline">Pronto para crescer com estratégia?</h2>
+        <p data-i18n="home.cta.sub">Fale com a gente e descubra o que a Magnus Mídias pode fazer pelo seu negócio.</p>
+        <div class="cta-section__actions">
+          <a href="#" class="btn btn-whatsapp" data-whatsapp data-i18n="home.cta.button" rel="noopener noreferrer" target="_blank">Falar no WhatsApp</a>
+          <a href="mailto:contato@magnusmidias.com" class="btn btn-light" data-i18n="case.cta.email">Enviar e-mail</a>
+          <a href="/portfolio.html" class="btn btn-ghost btn-ghost--light" data-i18n="home.hero.cta.secondary">Ver portfólio</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Magnus Mídias — página inicial">
+          <img src="/assets/images/logo/logo-dark.svg" alt="Magnus Mídias" width="120" height="28" loading="lazy" />
+        </a>
+        <p class="footer__tagline">Marketing · Tecnologia · Resultado.</p>
+      </div>
+      <nav class="footer__social" aria-label="Redes sociais">
+        <a href="https://instagram.com/magnusmidias" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/magnusmidias" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://youtube.com/@magnusmidias" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+        <a href="mailto:contato@magnusmidias.com" aria-label="E-mail" class="footer__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </nav>
+      <p class="footer__copy" data-i18n="footer.copy">© 2026 Magnus Mídias. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────── -->
+  <script src="/translations/pt.js"></script>
+  <script src="/translations/en.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+</body>
+</html>
