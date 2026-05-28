@@ -144,15 +144,20 @@
   line-height: 1.55;
 }
 
-/* ── Depoimentos — carrossel marquee infinito ─────────────── */
+/* ── Depoimentos — carrossel infinito ─────────────────────── */
 .testimonials__marquee {
-  display: flex;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image:         linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   cursor: grab;
   user-select: none;
-  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image:         linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.testimonials__marquee::-webkit-scrollbar {
+  display: none;
 }
 
 .testimonials__marquee.is-dragging {
@@ -162,15 +167,13 @@
 .testimonials__strip {
   display: flex;
   gap: var(--space-5);
-  padding-right: var(--space-5);
   width: max-content;
-  will-change: transform;
+  padding: 4px 0;
 }
 
 /* respeita preferência de movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   .testimonials__marquee {
-    overflow-x: auto;
     cursor: default;
     -webkit-mask-image: none;
     mask-image: none;

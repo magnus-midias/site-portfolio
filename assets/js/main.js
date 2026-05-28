@@ -90,124 +90,88 @@ function initTestimonialsMarquee() {
   const marquee = document.querySelector('.testimonials__marquee');
   if (!marquee) return;
 
+  const strip = marquee.querySelector('.testimonials__strip');
+  if (!strip) return;
+
+  // Remove a faixa duplicada do HTML — vamos clonar via JS
+  marquee.querySelectorAll('.testimonials__strip').forEach((s, i) => {
+    if (i > 0) s.remove();
+  });
+
+  // Clona cards até ter conteúdo suficiente para loop (mínimo 3x a largura da tela)
+  function fillStrip() {
+    const originalCards = Array.from(strip.children);
+    const originalCount = originalCards.length;
+    const targetW = window.innerWidth * 3;
+    while (strip.scrollWidth < targetW) {
+      originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        strip.appendChild(clone);
+      });
+    }
+    return originalCount;
+  }
+
+  const originalCount = fillStrip();
+
+  // Largura de um "set" original de cards
+  function setWidth() {
+    const cards = strip.children;
+    if (!cards.length) return 0;
+    // soma as larguras dos cards originais + gaps
+    let w = 0;
+    const gap = parseFloat(getComputedStyle(strip).gap) || 0;
+    for (let i = 0; i < originalCount; i++) {
+      w += cards[i].offsetWidth + gap;
+    }
+    return w;
+  }
+
+  const speed = 0.7; // px por frame
+  let userScrolling = false;
+  let userScrollTimer = null;
+
+  // Auto-scroll via requestAnimationFrame
+  function tick() {
+    if (!userScrolling) {
+      marquee.scrollLeft += speed;
+      // Loop infinito: quando scroll passa de um set, volta silenciosamente
+      const sw = setWidth();
+      if (sw > 0 && marquee.scrollLeft >= sw) {
+        marquee.scrollLeft -= sw;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Detecta interação do usuário pelo evento scroll nativo
+  marquee.addEventListener('scroll', () => {
+    userScrolling = true;
+    clearTimeout(userScrollTimer);
+    userScrollTimer = setTimeout(() => {
+      userScrolling = false;
+      // Loop: após o usuário soltar, normaliza se passou do set
+      const sw = setWidth();
+      if (sw > 0) {
+        while (marquee.scrollLeft >= sw) marquee.scrollLeft -= sw;
+        while (marquee.scrollLeft < 0) marquee.scrollLeft += sw;
+      }
+    }, 150);
+  });
+
+  // Pausa auto-scroll ao hover (desktop)
+  marquee.addEventListener('mouseenter', () => { userScrolling = true; });
+  marquee.addEventListener('mouseleave', () => { userScrolling = false; });
+
+  // Inicia a partir do meio para ter conteúdo nos dois lados
+  requestAnimationFrame(() => {
+    marquee.scrollLeft = 0;
+    requestAnimationFrame(tick);
+  });
+
   // Respeita preferência de movimento reduzido
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const strips = marquee.querySelectorAll('.testimonials__strip');
-  if (!strips.length) return;
-
-  // Largura total de uma faixa (metade do conteúdo duplicado)
-  const stripW = () => strips[0].offsetWidth;
-
-  let offset = 0;       // posição atual em px (negativa = movendo para esquerda)
-  const speed = 0.6;    // px por frame (~36px/s a 60fps)
-  let paused = false;
-  let rafId = null;
-
-  // Drag state
-  let dragging = false;
-  let dragStartX = 0;
-  let dragStartOffset = 0;
-  let dragVelocity = 0;
-  let lastDragX = 0;
-  let lastDragTime = 0;
-
-  function applyTransform() {
-    // Normaliza offset: quando passa de uma largura de faixa, reseta sem salto
-    const w = stripW();
-    offset = ((offset % w) - w) % w; // mantém sempre em [-w, 0)
-    strips.forEach(s => {
-      s.style.transform = `translateX(${offset}px)`;
-    });
-  }
-
-  function tick() {
-    if (!paused && !dragging) {
-      offset -= speed;
-      applyTransform();
-    }
-    rafId = requestAnimationFrame(tick);
-  }
-
-  // ── Drag mouse (desktop) ────────────────────────────────
-  marquee.addEventListener('mousedown', e => {
-    dragging = true;
-    dragStartX = e.clientX;
-    dragStartOffset = offset;
-    dragVelocity = 0;
-    lastDragX = e.clientX;
-    lastDragTime = performance.now();
-    marquee.classList.add('is-dragging');
-  });
-
-  window.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    const now = performance.now();
-    const dt = now - lastDragTime;
-    if (dt > 0) dragVelocity = (e.clientX - lastDragX) / dt * 16;
-    lastDragX = e.clientX;
-    lastDragTime = now;
-    offset = dragStartOffset + (e.clientX - dragStartX);
-    applyTransform();
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (!dragging) return;
-    dragging = false;
-    marquee.classList.remove('is-dragging');
-    releaseMomentum();
-  });
-
-  // ── Drag touch (mobile / Safari iOS) ───────────────────
-  marquee.addEventListener('touchstart', e => {
-    e.preventDefault();
-    dragging = true;
-    dragStartX = e.touches[0].clientX;
-    dragStartOffset = offset;
-    dragVelocity = 0;
-    lastDragX = dragStartX;
-    lastDragTime = performance.now();
-  }, { passive: false });
-
-  marquee.addEventListener('touchmove', e => {
-    if (!dragging) return;
-    e.preventDefault();
-    const x = e.touches[0].clientX;
-    const now = performance.now();
-    const dt = now - lastDragTime;
-    if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
-    lastDragX = x;
-    lastDragTime = now;
-    offset = dragStartOffset + (x - dragStartX);
-    applyTransform();
-  }, { passive: false });
-
-  marquee.addEventListener('touchend', () => {
-    if (!dragging) return;
-    dragging = false;
-    releaseMomentum();
-  });
-
-  function releaseMomentum() {
-    const momentum = dragVelocity;
-    if (Math.abs(momentum) > 0.5) {
-      let frames = 0;
-      const decay = () => {
-        const v = momentum * Math.pow(0.92, frames++);
-        offset += v;
-        applyTransform();
-        if (Math.abs(v) > 0.1) requestAnimationFrame(decay);
-      };
-      requestAnimationFrame(decay);
-    }
-  }
-
-  // ── Pausa ao hover (desktop) ─────────────────────────────
-  marquee.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
-  marquee.addEventListener('mouseleave', () => { paused = false; });
-
-  // Inicia o loop
-  rafId = requestAnimationFrame(tick);
 }
 
 /* ── Inicialização ────────────────────────────────────────── */
