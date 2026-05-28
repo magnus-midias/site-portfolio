@@ -217,6 +217,22 @@
   background-color: var(--color-surface-alt);
 }
 
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
 .testimonial-card__name {
   font-weight: 600;
   font-size: 0.9375rem;

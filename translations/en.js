@@ -49,6 +49,24 @@ window.__i18n.en = {
     'home.testimonials.eyebrow':   'Testimonials',
     'home.testimonials.headline':  'What our clients say',
 
+    'home.testimonials.geovana.role':  'BellaCalha — Gutters & Roofing, Florianópolis',
+    'home.testimonials.geovana.text':  '"Magnus handles our social media, paid traffic, and even our Mercado Livre operation. Delegating so much to one team only worked because the quality and proximity were always there. We truly feel like partners, not just another client."',
+
+    'home.testimonials.manuela.role':  'Unique Dental — Dental clinic, Dublin',
+    'home.testimonials.manuela.text':  '"What impresses me most is the clarity of results. We know exactly how many appointments came from Google Ads campaigns and what our cost per conversion is. That level of transparency is rare and makes all the difference when making decisions."',
+
+    'home.testimonials.junior.role':   '9ine Supplements — Retail chain, Greater Florianópolis',
+    'home.testimonials.junior.text':   '"In paid traffic, trust is everything. From the start it was clear that the money invested would be handled with seriousness and responsibility. The results came, but what kept me loyal was knowing I was in good hands."',
+
+    'home.testimonials.antonio.role':  'ACR Arquitetura — Healthcare architecture, São Paulo',
+    'home.testimonials.antonio.text':  '"Having a marketing consultancy that understands our market lets me focus on what truly matters: the projects. I don\'t need to worry about positioning or lead generation — that\'s in competent hands."',
+
+    'home.testimonials.missy.role':    'Lilia Restaurant Bar — Brooklyn, New York',
+    'home.testimonials.missy.text':    '"What surprised me most was the process. Structured, clear at every stage, no surprises. The final result exceeded what I had imagined — the site is well built, with navigation that truly represents what Lilia is."',
+
+    'home.testimonials.rob.role':      'Domus Nova — Furniture, United Kingdom',
+    'home.testimonials.rob.text':      '"The site brought a clarity I had been looking for in the brand for a long time. It made complete sense with what I envision for Domus Nova — distinctive, with personality. It\'s exactly what a high-end furniture site needs to be."',
+
     /* ── Home — CTA Final ────────────────────────────── */
     'home.cta.headline':  'Ready to grow with strategy?',
     'home.cta.sub':       'Get in touch and find out what Magnus Mídias can do for your business.',

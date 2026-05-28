@@ -49,6 +49,24 @@ window.__i18n.pt = {
     'home.testimonials.eyebrow':   'Depoimentos',
     'home.testimonials.headline':  'O que nossos clientes dizem',
 
+    'home.testimonials.geovana.role':  'BellaCalha — Indústria de calhas, Florianópolis',
+    'home.testimonials.geovana.text':  '"A Magnus cuida das nossas redes, do tráfego pago e até da nossa operação no Mercado Livre. Delegar tanta coisa para uma equipe só funcionou porque a qualidade e a proximidade sempre estiveram lá. A gente se sente realmente parceiro, não só mais um cliente."',
+
+    'home.testimonials.manuela.role':  'Unique Dental — Clínica odontológica, Dublin',
+    'home.testimonials.manuela.text':  '"O que mais me impressiona é a clareza dos resultados. Sabemos exatamente quantos agendamentos vieram das campanhas de Google Ads e qual é o nosso custo por conversão. Esse nível de transparência é raro e faz toda a diferença para tomar decisões."',
+
+    'home.testimonials.junior.role':   '9ine Suplementos — Rede de lojas, Grande Florianópolis',
+    'home.testimonials.junior.text':   '"Em tráfego pago, confiança é tudo. Desde o começo ficou claro que o dinheiro investido seria tratado com seriedade e responsabilidade. Os resultados vieram, mas o que me fidelizou foi saber que estava em boas mãos."',
+
+    'home.testimonials.antonio.role':  'ACR Arquitetura — Arquitetura hospitalar, São Paulo',
+    'home.testimonials.antonio.text':  '"Ter uma assessoria de marketing que entende o nosso mercado me permite focar no que realmente importa: os projetos. Não preciso me preocupar com posicionamento ou captação — isso está em mãos competentes."',
+
+    'home.testimonials.missy.role':    'Lilia Restaurant Bar — Brooklyn, Nova York',
+    'home.testimonials.missy.text':    '"O que mais me surpreendeu foi o processo. Estruturado, claro em cada etapa, sem surpresas. O resultado final superou o que eu imaginava — o site ficou bem construído, com uma navegação que realmente representa o que o Lilia é."',
+
+    'home.testimonials.rob.role':      'Domus Nova — Mobiliário, Reino Unido',
+    'home.testimonials.rob.text':      '"O site trouxe uma clareza que eu buscava há muito tempo para a marca. Fez todo sentido com o que eu penso para o Domus Nova — diferenciado, com personalidade. É exatamente o que um site de mobiliário de alto padrão precisa ser."',
+
     /* ── Home — CTA Final ────────────────────────────── */
     'home.cta.headline':  'Pronto para crescer com estratégia?',
     'home.cta.sub':       'Fale com a gente e descubra o que a Magnus Mídias pode fazer pelo seu negócio.',
