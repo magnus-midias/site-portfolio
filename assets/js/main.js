@@ -129,21 +129,49 @@ function initTestimonialsMarquee() {
     rafId = requestAnimationFrame(tick);
   }
 
-  // ── Drag (Pointer Events — mouse + touch + stylus) ──────
-  marquee.addEventListener('pointerdown', e => {
+  // ── Drag mouse (desktop) ────────────────────────────────
+  marquee.addEventListener('mousedown', e => {
     dragging = true;
     dragStartX = e.clientX;
     dragStartOffset = offset;
     dragVelocity = 0;
     lastDragX = e.clientX;
     lastDragTime = performance.now();
-    marquee.setPointerCapture(e.pointerId);
     marquee.classList.add('is-dragging');
   });
 
-  marquee.addEventListener('pointermove', e => {
+  window.addEventListener('mousemove', e => {
     if (!dragging) return;
-    const x = e.clientX;
+    const now = performance.now();
+    const dt = now - lastDragTime;
+    if (dt > 0) dragVelocity = (e.clientX - lastDragX) / dt * 16;
+    lastDragX = e.clientX;
+    lastDragTime = now;
+    offset = dragStartOffset + (e.clientX - dragStartX);
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    marquee.classList.remove('is-dragging');
+    releaseMomentum();
+  });
+
+  // ── Drag touch (mobile / Safari iOS) ───────────────────
+  marquee.addEventListener('touchstart', e => {
+    dragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartOffset = offset;
+    dragVelocity = 0;
+    lastDragX = dragStartX;
+    lastDragTime = performance.now();
+  }, { passive: true });
+
+  marquee.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    e.preventDefault();
+    const x = e.touches[0].clientX;
     const now = performance.now();
     const dt = now - lastDragTime;
     if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
@@ -151,12 +179,15 @@ function initTestimonialsMarquee() {
     lastDragTime = now;
     offset = dragStartOffset + (x - dragStartX);
     applyTransform();
-  });
+  }, { passive: false });
 
-  const endDrag = () => {
+  marquee.addEventListener('touchend', () => {
     if (!dragging) return;
     dragging = false;
-    marquee.classList.remove('is-dragging');
+    releaseMomentum();
+  });
+
+  function releaseMomentum() {
     const momentum = dragVelocity;
     if (Math.abs(momentum) > 0.5) {
       let frames = 0;
@@ -168,10 +199,7 @@ function initTestimonialsMarquee() {
       };
       requestAnimationFrame(decay);
     }
-  };
-
-  marquee.addEventListener('pointerup', endDrag);
-  marquee.addEventListener('pointercancel', endDrag);
+  }
 
   // ── Pausa ao hover (desktop) ─────────────────────────────
   marquee.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
