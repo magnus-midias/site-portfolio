@@ -171,7 +171,6 @@ function initTestimonialsMarquee() {
 
   // ── Touch drag ──────────────────────────────────────────
   let touchStartY = 0;
-  let touchDirectionLocked = false; // 'h' | 'v' | false
 
   marquee.addEventListener('touchstart', e => {
     dragging = true;
@@ -181,26 +180,23 @@ function initTestimonialsMarquee() {
     dragVelocity = 0;
     lastDragX = dragStartX;
     lastDragTime = performance.now();
-    touchDirectionLocked = false;
   }, { passive: true });
 
-  marquee.addEventListener('touchmove', e => {
+  // Registrado no document para garantir entrega no Safari iOS
+  document.addEventListener('touchmove', e => {
     if (!dragging) return;
     const x = e.touches[0].clientX;
     const y = e.touches[0].clientY;
+    const dx = Math.abs(x - dragStartX);
+    const dy = Math.abs(y - touchStartY);
 
-    // Determina direção dominante na primeira movimentação
-    if (!touchDirectionLocked) {
-      const dx = Math.abs(x - dragStartX);
-      const dy = Math.abs(y - touchStartY);
-      if (dx < 4 && dy < 4) return; // ainda não se moveu o suficiente
-      touchDirectionLocked = dx > dy ? 'h' : 'v';
+    // Se gesto claramente vertical, abandona drag
+    if (dy > dx * 1.5) {
+      dragging = false;
+      return;
     }
 
-    // Só intercepta se for gesto horizontal
-    if (touchDirectionLocked === 'v') return;
     e.preventDefault();
-
     const now = performance.now();
     const dt = now - lastDragTime;
     if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
@@ -210,7 +206,8 @@ function initTestimonialsMarquee() {
     applyTransform();
   }, { passive: false });
 
-  marquee.addEventListener('touchend', () => {
+  document.addEventListener('touchend', () => {
+    if (!dragging) return;
     dragging = false;
     const momentum = dragVelocity;
     if (Math.abs(momentum) > 0.5) {
