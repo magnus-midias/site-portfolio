@@ -130,14 +130,9 @@ function initTestimonialsMarquee() {
   }
 
   // ── Drag (Pointer Events — mouse + touch + stylus) ──────
-  let dragStartY = 0;
-  let directionLocked = null; // 'h' | 'v' | null
-
   marquee.addEventListener('pointerdown', e => {
     dragging = true;
-    directionLocked = null;
     dragStartX = e.clientX;
-    dragStartY = e.clientY;
     dragStartOffset = offset;
     dragVelocity = 0;
     lastDragX = e.clientX;
@@ -149,18 +144,6 @@ function initTestimonialsMarquee() {
   marquee.addEventListener('pointermove', e => {
     if (!dragging) return;
     const x = e.clientX;
-    const y = e.clientY;
-
-    if (!directionLocked) {
-      const dx = Math.abs(x - dragStartX);
-      const dy = Math.abs(y - dragStartY);
-      if (dx < 5 && dy < 5) return;
-      directionLocked = dx >= dy ? 'h' : 'v';
-    }
-
-    if (directionLocked === 'v') { dragging = false; marquee.classList.remove('is-dragging'); return; }
-
-    e.preventDefault();
     const now = performance.now();
     const dt = now - lastDragTime;
     if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
