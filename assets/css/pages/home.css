@@ -212,11 +212,13 @@
 .testimonial-card__avatar {
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   border-radius: 50%;
   flex-shrink: 0;
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.875rem;
