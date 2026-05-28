@@ -152,6 +152,7 @@
   mask-image:         linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   cursor: grab;
   user-select: none;
+  touch-action: pan-y;
 }
 
 .testimonials__marquee.is-dragging {

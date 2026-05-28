@@ -170,26 +170,45 @@ function initTestimonialsMarquee() {
   });
 
   // ── Touch drag ──────────────────────────────────────────
+  let touchStartY = 0;
+  let touchDirectionLocked = false; // 'h' | 'v' | false
+
   marquee.addEventListener('touchstart', e => {
     dragging = true;
     dragStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
     dragStartOffset = offset;
     dragVelocity = 0;
     lastDragX = dragStartX;
     lastDragTime = performance.now();
+    touchDirectionLocked = false;
   }, { passive: true });
 
   marquee.addEventListener('touchmove', e => {
     if (!dragging) return;
+    const x = e.touches[0].clientX;
+    const y = e.touches[0].clientY;
+
+    // Determina direção dominante na primeira movimentação
+    if (!touchDirectionLocked) {
+      const dx = Math.abs(x - dragStartX);
+      const dy = Math.abs(y - touchStartY);
+      if (dx < 4 && dy < 4) return; // ainda não se moveu o suficiente
+      touchDirectionLocked = dx > dy ? 'h' : 'v';
+    }
+
+    // Só intercepta se for gesto horizontal
+    if (touchDirectionLocked === 'v') return;
+    e.preventDefault();
+
     const now = performance.now();
     const dt = now - lastDragTime;
-    const x = e.touches[0].clientX;
     if (dt > 0) dragVelocity = (x - lastDragX) / dt * 16;
     lastDragX = x;
     lastDragTime = now;
     offset = dragStartOffset + (x - dragStartX);
     applyTransform();
-  }, { passive: true });
+  }, { passive: false });
 
   marquee.addEventListener('touchend', () => {
     dragging = false;
