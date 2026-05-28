@@ -217,7 +217,9 @@
   min-height: 48px;
   border-radius: 50%;
   flex-shrink: 0;
+  background-color: #00002B;
   background-color: var(--color-primary);
+  color: #ffffff;
   color: var(--color-text-inverse);
   display: flex;
   align-items: center;

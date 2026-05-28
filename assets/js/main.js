@@ -129,72 +129,36 @@ function initTestimonialsMarquee() {
     rafId = requestAnimationFrame(tick);
   }
 
-  // ── Mouse drag ──────────────────────────────────────────
-  marquee.addEventListener('mousedown', e => {
+  // ── Drag (Pointer Events — mouse + touch + stylus) ──────
+  let dragStartY = 0;
+  let directionLocked = null; // 'h' | 'v' | null
+
+  marquee.addEventListener('pointerdown', e => {
     dragging = true;
+    directionLocked = null;
     dragStartX = e.clientX;
+    dragStartY = e.clientY;
     dragStartOffset = offset;
     dragVelocity = 0;
     lastDragX = e.clientX;
     lastDragTime = performance.now();
+    marquee.setPointerCapture(e.pointerId);
     marquee.classList.add('is-dragging');
   });
 
-  window.addEventListener('mousemove', e => {
+  marquee.addEventListener('pointermove', e => {
     if (!dragging) return;
-    const now = performance.now();
-    const dt = now - lastDragTime;
-    if (dt > 0) dragVelocity = (e.clientX - lastDragX) / dt * 16; // px/frame
-    lastDragX = e.clientX;
-    lastDragTime = now;
-    offset = dragStartOffset + (e.clientX - dragStartX);
-    applyTransform();
-  });
+    const x = e.clientX;
+    const y = e.clientY;
 
-  window.addEventListener('mouseup', () => {
-    if (!dragging) return;
-    dragging = false;
-    marquee.classList.remove('is-dragging');
-    // Aplica momentum: continua na direção do arrasto por um tempo
-    const momentum = dragVelocity;
-    if (Math.abs(momentum) > 0.5) {
-      let frames = 0;
-      const decay = () => {
-        const v = momentum * Math.pow(0.92, frames++);
-        offset += v;
-        applyTransform();
-        if (Math.abs(v) > 0.1) requestAnimationFrame(decay);
-      };
-      requestAnimationFrame(decay);
+    if (!directionLocked) {
+      const dx = Math.abs(x - dragStartX);
+      const dy = Math.abs(y - dragStartY);
+      if (dx < 5 && dy < 5) return;
+      directionLocked = dx >= dy ? 'h' : 'v';
     }
-  });
 
-  // ── Touch drag ──────────────────────────────────────────
-  let touchStartY = 0;
-
-  marquee.addEventListener('touchstart', e => {
-    dragging = true;
-    dragStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    dragStartOffset = offset;
-    dragVelocity = 0;
-    lastDragX = dragStartX;
-    lastDragTime = performance.now();
-  }, { passive: true });
-
-  // Registrado no document para garantir entrega no Safari iOS
-  document.addEventListener('touchmove', e => {
-    if (!dragging) return;
-    const x = e.touches[0].clientX;
-    const y = e.touches[0].clientY;
-    const dx = Math.abs(x - dragStartX);
-    const dy = Math.abs(y - touchStartY);
-
-    // Se gesto claramente vertical, abandona drag
-    if (dy > dx * 1.5) {
-      dragging = false;
-      return;
-    }
+    if (directionLocked === 'v') { dragging = false; marquee.classList.remove('is-dragging'); return; }
 
     e.preventDefault();
     const now = performance.now();
@@ -204,11 +168,12 @@ function initTestimonialsMarquee() {
     lastDragTime = now;
     offset = dragStartOffset + (x - dragStartX);
     applyTransform();
-  }, { passive: false });
+  });
 
-  document.addEventListener('touchend', () => {
+  const endDrag = () => {
     if (!dragging) return;
     dragging = false;
+    marquee.classList.remove('is-dragging');
     const momentum = dragVelocity;
     if (Math.abs(momentum) > 0.5) {
       let frames = 0;
@@ -220,9 +185,12 @@ function initTestimonialsMarquee() {
       };
       requestAnimationFrame(decay);
     }
-  });
+  };
 
-  // ── Pausa ao hover (sem drag) ────────────────────────────
+  marquee.addEventListener('pointerup', endDrag);
+  marquee.addEventListener('pointercancel', endDrag);
+
+  // ── Pausa ao hover (desktop) ─────────────────────────────
   marquee.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
   marquee.addEventListener('mouseleave', () => { paused = false; });
 
